@@ -1,0 +1,37 @@
+{
+    "name": "user-crud",
+    "version": "1.0.0",
+    "description": "cakephp3",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "node_modules/.bin/webpack",
+        "watch": "npm run build -- --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Kentaro5/user-crud.git"
+    },
+    "author": "Kentaro Minami",
+    "devDependencies": {
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "babel-loader": "^8.0.5",
+        "bulma": "^0.9.0",
+        "css-loader": "^3.4.2",
+        "extract-text-webpack-plugin": "^2.1.2",
+        "file-loader": "^3.0.1",
+        "node-sass": "^4.14.1",
+        "sass-loader": "^7.3.1",
+        "style-loader": "^0.23.1",
+        "webpack": "^2.7.0"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Kentaro5/user-crud/issues"
+    },
+    "homepage": "https://github.com/Kentaro5/user-crud#readme"
+}
