@@ -25,5 +25,7 @@ class Sexs extends AbstractMigration
             'limit' => 3,
             'null' => false,
         ]);
+
+        $table->create();
     }
 }
