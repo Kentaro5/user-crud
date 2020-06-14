@@ -26,6 +26,16 @@ class Sexs extends AbstractMigration
             'null' => false,
         ]);
 
+        $table->addColumn('created', 'datetime', [
+            'default' => null,
+            'null' => false,
+        ]);
+
+        $table->addColumn('modified', 'datetime', [
+            'default' => null,
+            'null' => true,
+        ]);
+
         $table->create();
     }
 }
