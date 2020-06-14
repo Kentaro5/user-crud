@@ -55,11 +55,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
 
     /**
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $routes->connect('/users/*', ['controller' => 'Users', 'action' => 'index']);
-
-    /**
      * Connect catchall routes for all controllers.
      *
      * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
