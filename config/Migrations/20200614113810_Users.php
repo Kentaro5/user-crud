@@ -35,8 +35,7 @@ class Users extends AbstractMigration
         $table->addColumn('email', 'string', [
             'default' => null,
             'limit' => 254,
-            'null' => false,
-            'unique' => true
+            'null' => false
         ]);
 
         $table->addColumn('created', 'datetime', [
@@ -52,6 +51,12 @@ class Users extends AbstractMigration
         $table->addColumn('deleted', 'datetime', [
             'default' => null,
             'null' => true,
+        ]);
+
+        $table->addIndex([
+            'email',
+        ],[
+            'unique' => true,
         ]);
 
         $table->create();
