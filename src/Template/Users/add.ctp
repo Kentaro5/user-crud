@@ -1,41 +1,68 @@
 <!-- File: src/Template/Articles/add.ctp -->
 <?php
 
+$sex_options = $sexs->map(function ($value, $key) {
+    if( $key !== 0 ){
+        return [
+            'value' => $value->code,
+            'text' => $value->name
+        ];
+    }
+
+});
+
 ?>
 
 <div class="container">
     <div class="columns is-centered">
         <div class="panel column is-5-tablet is-6-desktop is-6-widescreen is-link">
             <p class="panel-heading">
-               ユーザー作成画面
+                ユーザー作成画面
             </p>
             <?= $this->Form->create($user) ?>
 
             <div class="field">
-                <?php if ($this->Form->isFieldError('name')) : ?>
+                <?php if ($this->Form->isFieldError('first_name')) : ?>
                     <div class="notification is-danger">
-                        <?php echo $this->Form->error('name') ?>
+                        <?php echo $this->Form->error('first_name') ?>
                     </div>
                 <?php endif; ?>
-                <label class="label">氏名</label>
+                <label class="label">姓</label>
                 <div class="control">
-                    <?= $this->Form->text('name', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+                    <?= $this->Form->text('first_name', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
                 </div>
             </div>
 
             <div class="field">
-                <?php if ($this->Form->isFieldError('name')) : ?>
+                <?php if ($this->Form->isFieldError('last_name')) : ?>
                     <div class="notification is-danger">
-                        <?php echo $this->Form->error('name') ?>
+                        <?php echo $this->Form->error('last_name') ?>
+                    </div>
+                <?php endif; ?>
+                <label class="label">名</label>
+                <div class="control">
+                    <?= $this->Form->text('last_name', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+                </div>
+            </div>
+
+            <div class="field">
+                <?php if ($this->Form->isFieldError('sex')) : ?>
+                    <div class="notification is-danger">
+                        <?php echo $this->Form->error('sex') ?>
                     </div>
                 <?php endif; ?>
                 <label class="label">性別</label>
                 <div class="control">
                     <div class="select">
-                        <?= $this->Form->text('name', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+
+                        <?= $this->Form->select('sex', $sex_options, [
+                            'class' => 'form-control',
+                            'default' => 0
+                        ]); ?>
                     </div>
                 </div>
             </div>
+
 
             <div class="field">
 
@@ -65,7 +92,7 @@
 
             <div class="field">
                 <div class="control">
-                    <?= $this->Form->button(__('登録'), ['class' => 'button is-link']) ?>
+                    <?= $this->Form->button(__('登録'), ['class' => 'button is-link submit']) ?>
                 </div>
             </div>
             <?= $this->Form->end() ?>
