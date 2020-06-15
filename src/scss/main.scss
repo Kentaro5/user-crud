@@ -3,3 +3,19 @@
 .user_register{
     padding-top: 40px;
 }
+
+.table-text {
+    height: auto;
+    white-space: unset;
+    width: 200px;
+    word-wrap: break-word;
+   &.id {
+        width: 20px;
+    }
+    &.sex {
+        width: 50px;
+    }
+    &.email {
+        width: 300px;
+    }
+}
