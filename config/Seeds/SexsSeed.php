@@ -23,22 +23,22 @@ class SexsSeed extends AbstractSeed
         $data =
             [
                 [
-                    'code' => '0',
+                    'code' => 0,
                     'name' => '未入力',
                     'created' => $datetime
                 ],
                 [
-                    'code' => '1',
+                    'code' => 1,
                     'name' => '男性',
                     'created' => $datetime
                 ],
                 [
-                    'code' => '2',
+                    'code' => 2,
                     'name' => '女性',
                     'created' => $datetime
                 ],
                 [
-                    'code' => '9',
+                    'code' => 9,
                     'name' => 'その他',
                     'created' => $datetime
                 ]
