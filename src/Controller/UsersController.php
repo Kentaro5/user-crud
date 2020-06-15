@@ -38,22 +38,6 @@ class UsersController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('user', $user);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -113,16 +97,22 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($user_id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+
+        //使用するコンポーネントをロード。
+        $this->loadComponent('User',[
+            'className' => '\App\Controller\Component\User\UserComponent'
+        ]);
+
+        $user = $this->User->getUserInfoWithSex($user_id);
+
+        if ($this->request->is(['post', 'delete'])) {
+
+            //ユーザー情報更新処理
+            $user = $this->User->deleteUser($this->request);
         }
 
-        return $this->redirect(['action' => 'index']);
+        $this->set('user', $user);
     }
 }

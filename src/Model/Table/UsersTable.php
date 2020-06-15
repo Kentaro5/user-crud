@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use SoftDelete\Model\Table\SoftDeleteTrait;
 
 /**
  * Users Model
@@ -22,6 +23,11 @@ use Cake\Validation\Validator;
  */
 class UsersTable extends Table
 {
+    //ソフトデリートを使う。
+    use SoftDeleteTrait;
+
+    //ソフトデリートのカラム指定。
+    protected $softDeleteField = 'deleted';
 
     /**
      * Initialize method

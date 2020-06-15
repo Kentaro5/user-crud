@@ -42,6 +42,14 @@ class UserComponent extends Component {
         return $this->Users->get($user_id);
     }
 
+    public function getUserInfoWithSex( $user_id ) {
+
+        //使用するモデルをロード。
+        $this->loadModel('Users');
+
+        return $this->Users->get($user_id, ['contain' => 'Sexs']);
+    }
+
     public function getUserLists() {
 
         //使用するモデルをロード。
@@ -211,6 +219,48 @@ class UserComponent extends Component {
             //DBの保存処理を巻き戻して元の状態に戻す。
             $db_transaction->rollback();
         }
+    }
+
+    public function deleteUser( $request ) {
+
+        //使用するモデルをロード。
+        $this->loadModel('Users');
+
+        //トランザクション処理のセット。
+        $db_transaction = ConnectionManager::get('default');
+
+        $user_id = intval($request->getData()['user_id']);
+        $user = $this->getUserInfo($user_id);
+
+        try{
+            $db_transaction->begin();
+
+            //更新処理を実行。
+            if ($this->Users->deleteOrFail($user)) {
+
+                $this->Flash->success(__('ユーザーを削除しました。'));
+
+                //DBの更新処理をDBに反映する。
+                $db_transaction->commit();
+
+                //保存後はトップページに遷移。
+                return $this->_registry->getController()->redirect(['action' => 'index']);
+            }
+
+        } catch(PersistenceFailedException $e) {
+            //logにエラーの詳細を記載。
+            $this->log($e->getCode(), 'debug');
+            $this->log($e->getMessage(), 'debug');
+            $this->log($e->getFile(), 'debug');
+            $this->log($e->getTraceAsString(), 'debug');
+            $this->log($e->getEntity(), 'debug');
+
+            $this->Flash->error(__('ユーザーを削除できませんでした。お手数ですが、もう一度処理をやり直してください。'));
+
+            //DBの保存処理を巻き戻して元の状態に戻す。
+            $db_transaction->rollback();
+        }
+
     }
 
 
