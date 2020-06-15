@@ -33,6 +33,10 @@ class UserComponent extends Component {
 
     public function getUserInfo( $user_id ) {
 
+        //使用するモデルをロード。
+        $this->loadModel('Users');
+
+        return $this->Users->get($user_id);
     }
 
     public function getUserLists() {
