@@ -31,6 +31,42 @@ class UserComponent extends Component {
     }
 
 
+    public function addNewUser( $request ) {
+        //使用するモデルをロード。
+        $this->loadModel('Users');
+
+        //バリデーションチェック。
+        $this->user_name_form->validate($request->getData());
+        $this->user_tell_form->validate($request->getData());
+        $this->user_email_form->validate($request->getData());
+
+        //Entity作成。
+        $user = $this->Users->newEntity($request->getData());
+        $user = $this->Users->patchEntity($user, $request->getData());
+
+        //エラーがあれば、errorsに格納。
+        if(!empty($this->user_name_form->errors()['first_name'])) {
+            $user->errors('first_name', $this->user_name_form->errors()['first_name']);
+        }
+
+        if(!empty($this->user_name_form->errors()['last_name'])) {
+            $user->errors('last_name', $this->user_name_form->errors()['last_name']);
+        }
+
+        if(!empty($this->user_tell_form->errors()['tell'])) {
+            $user->errors('tell', $this->user_tell_form->errors()['tell']);
+        }
+
+        if(!empty($this->user_email_form->errors()['email'])) {
+            $user->errors('email', $this->user_email_form->errors()['email']);
+        }
+
+        //エラーがあれば、エラーを返す。
+        if( $user->errors() )
+        {
+            return $user;
+        }
+    }
 
 
 }
