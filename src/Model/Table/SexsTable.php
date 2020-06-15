@@ -48,9 +48,6 @@ class SexsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
 
         $validator
             ->scalar('code')
