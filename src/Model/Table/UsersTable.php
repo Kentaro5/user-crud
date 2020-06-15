@@ -38,6 +38,15 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        //Sexテーブルのリレーションを設定。
+        $this->hasOne('Sexs',
+            [
+                'foreignKey' => 'code',
+                'bindingKey' => 'sex',
+                'propertyName' => 'sex'
+            ]
+        );
     }
 
 
