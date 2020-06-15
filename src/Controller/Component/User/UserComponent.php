@@ -115,6 +115,10 @@ class UserComponent extends Component {
         }
     }
 
+    public function editUserInfo( $request ) {
+
+    }
+
 
 }
 
