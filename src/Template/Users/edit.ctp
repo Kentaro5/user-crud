@@ -30,7 +30,7 @@ $sex_options = $sexs->map(function ($value, $key) {
                     <?php endif; ?>
                     <label class="label">姓</label>
                     <div class="control">
-                        <?= $this->Form->text('first_name', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+                        <?= $this->Form->text('first_name', ['type' => 'text', 'required' => false, 'class' => 'input', 'placeholder' => '例）山田']) ?>
                     </div>
                 </div>
 
@@ -42,21 +42,21 @@ $sex_options = $sexs->map(function ($value, $key) {
                     <?php endif; ?>
                     <label class="label">名</label>
                     <div class="control">
-                        <?= $this->Form->text('last_name', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+                        <?= $this->Form->text('last_name', ['type' => 'text', 'required' => false, 'class' => 'input', 'placeholder' => '例）太郎']) ?>
                     </div>
                 </div>
 
                 <div class="field">
-                    <?php if ($this->Form->isFieldError('sex')) : ?>
+                    <?php if ($this->Form->isFieldError('sex_code')) : ?>
                         <div class="notification is-danger">
-                            <?php echo $this->Form->error('sex') ?>
+                            <?php echo $this->Form->error('sex_code') ?>
                         </div>
                     <?php endif; ?>
                     <label class="label">性別</label>
                     <div class="control">
                         <div class="select">
 
-                            <?= $this->Form->select('sex', $sex_options, [
+                            <?= $this->Form->select('sex_code', $sex_options, [
                                 'class' => 'form-control',
                                 'default' => 0
                             ]); ?>
@@ -72,9 +72,9 @@ $sex_options = $sexs->map(function ($value, $key) {
                             <?php echo $this->Form->error('tell') ?>
                         </div>
                     <?php endif; ?>
-                    <label class="label">電話番号</label>
+                    <label class="label">電話番号(ハイフンなしで半角数字で入力してください。)</label>
                     <div class="control">
-                        <?= $this->Form->text('tell', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+                        <?= $this->Form->text('tell', ['type' => 'text', 'required' => false, 'class' => 'input', 'placeholder' => 'ハイフンなしで半角数字で入力してください']) ?>
                     </div>
                 </div>
 
@@ -85,9 +85,9 @@ $sex_options = $sexs->map(function ($value, $key) {
                             <?php echo $this->Form->error('email') ?>
                         </div>
                     <?php endif; ?>
-                    <label class="label">メールアドレス</label>
+                    <label class="label">メールアドレスメールアドレス(半角英数字で入力してください。)</label>
                     <div class="control">
-                        <?= $this->Form->text('email', ['type' => 'text', 'required' => false, 'class' => 'input']) ?>
+                        <?= $this->Form->text('email', ['type' => 'text', 'required' => false, 'class' => 'input', 'placeholder' => '例）example@gmail.com']) ?>
                     </div>
                 </div>
 

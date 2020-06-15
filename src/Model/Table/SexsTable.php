@@ -35,7 +35,7 @@ class SexsTable extends Table
 
         $this->setTable('sexs');
         $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
+        $this->setPrimaryKey('code');
 
         $this->addBehavior('Timestamp');
     }
@@ -48,9 +48,6 @@ class SexsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
 
         $validator
             ->scalar('code')
