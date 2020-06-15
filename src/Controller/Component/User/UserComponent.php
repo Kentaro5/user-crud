@@ -31,6 +31,19 @@ class UserComponent extends Component {
         return $this->Sexs->find();
     }
 
+    public function getUserLists() {
+
+        //使用するモデルをロード。
+        $this->loadModel('Users');
+
+        //Sexsテーブルを参照しながら、データを取得するクエリーを発行。
+        $users = $this->Users->find()
+            ->contain(['Sexs'])
+            ->order(['Users.id' => 'ASC']);
+
+        return $this->Paginator->paginate($users, ['limit' => 10]);
+    }
+
 
     public function addNewUser( $request ) {
         //使用するモデルをロード。
