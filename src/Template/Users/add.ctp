@@ -72,7 +72,7 @@ $sex_options = $sexs->map(function ($value, $key) {
                             <?php echo $this->Form->error('tell') ?>
                         </div>
                     <?php endif; ?>
-                    <label class="label">電話番号</label>
+                    <label class="label">電話番号(ハイフンなしで半角数字で入力してください。)</label>
                     <div class="control">
                         <?= $this->Form->text('tell', ['type' => 'text', 'required' => false, 'class' => 'input', 'placeholder' => 'ハイフンなしで半角数字で入力してください']) ?>
                     </div>
@@ -85,7 +85,7 @@ $sex_options = $sexs->map(function ($value, $key) {
                             <?php echo $this->Form->error('email') ?>
                         </div>
                     <?php endif; ?>
-                    <label class="label">メールアドレス</label>
+                    <label class="label">メールアドレス(半角英数字で入力してください。)</label>
                     <div class="control">
                         <?= $this->Form->text('email', ['type' => 'text', 'required' => false, 'class' => 'input', 'placeholder' => '例）example@gmail.com']) ?>
                     </div>
