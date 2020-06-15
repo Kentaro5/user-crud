@@ -40,48 +40,7 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
 
-        $validator
-            ->scalar('name')
-            ->maxLength('name', 60)
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
-
-        $validator
-            ->scalar('sex')
-            ->maxLength('sex', 1)
-            ->requirePresence('sex', 'create')
-            ->notEmpty('sex');
-
-        $validator
-            ->scalar('tell')
-            ->maxLength('tell', 18)
-            ->requirePresence('tell', 'create')
-            ->notEmpty('tell');
-
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmpty('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->dateTime('deleted')
-            ->allowEmpty('deleted');
-
-        return $validator;
-    }
 
     /**
      * Returns a rules checker object that will be used for validating
