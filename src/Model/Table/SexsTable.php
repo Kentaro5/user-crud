@@ -35,7 +35,7 @@ class SexsTable extends Table
 
         $this->setTable('sexs');
         $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
+        $this->setPrimaryKey('code');
 
         $this->addBehavior('Timestamp');
     }
