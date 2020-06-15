@@ -189,7 +189,7 @@ class UserComponent extends Component {
                 [
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
-                    'sex' => $user->sex,
+                    'sex_code' => $user->sex_code,
                     'tell' => $user->tell,
                     'email' => $user->email,
                 ];

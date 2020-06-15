@@ -49,7 +49,7 @@ class UsersTable extends Table
         $this->hasOne('Sexs',
             [
                 'foreignKey' => 'code',
-                'bindingKey' => 'sex',
+                'bindingKey' => 'sex_code',
                 'propertyName' => 'sex'
             ]
         );

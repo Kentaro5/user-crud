@@ -47,16 +47,16 @@ $sex_options = $sexs->map(function ($value, $key) {
                 </div>
 
                 <div class="field">
-                    <?php if ($this->Form->isFieldError('sex')) : ?>
+                    <?php if ($this->Form->isFieldError('sex_code')) : ?>
                         <div class="notification is-danger">
-                            <?php echo $this->Form->error('sex') ?>
+                            <?php echo $this->Form->error('sex_code') ?>
                         </div>
                     <?php endif; ?>
                     <label class="label">性別</label>
                     <div class="control">
                         <div class="select">
 
-                            <?= $this->Form->select('sex', $sex_options, [
+                            <?= $this->Form->select('sex_code', $sex_options, [
                                 'class' => 'form-control',
                                 'default' => 0
                             ]); ?>
