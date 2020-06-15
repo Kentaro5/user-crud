@@ -12,10 +12,10 @@ class Sexs extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('sexs');
+        $table = $this->table('sexs', ['id' => false, 'primary_key' => 'code']);
 
-        $table->addColumn('code', 'string', [
-            'default' => '0',
+        $table->addColumn('code', 'integer', [
+            'default' => null,
             'limit' => 1,
             'null' => false,
         ]);
