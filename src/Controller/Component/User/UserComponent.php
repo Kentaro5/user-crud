@@ -42,6 +42,14 @@ class UserComponent extends Component {
         return $this->Users->get($user_id);
     }
 
+    public function getUserInfoWithSex( $user_id ) {
+
+        //使用するモデルをロード。
+        $this->loadModel('Users');
+
+        return $this->Users->get($user_id, ['contain' => 'Sexs']);
+    }
+
     public function getUserLists() {
 
         //使用するモデルをロード。
