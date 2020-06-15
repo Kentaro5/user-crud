@@ -112,7 +112,7 @@ class UserComponent extends Component {
                 return $this->_registry->getController()->redirect(['action' => 'index']);
             }
 
-        } catch(\Cake\ORM\Exception\PersistenceFailedException $e) {
+        } catch(PersistenceFailedException $e) {
             //logにエラーの詳細を記載。
             $this->log($e->getCode(), 'debug');
             $this->log($e->getMessage(), 'debug');
