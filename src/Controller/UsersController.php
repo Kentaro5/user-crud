@@ -19,7 +19,6 @@ class UsersController extends AppController
      */
     public function index()
     {
-        dd('test');
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
@@ -48,18 +47,23 @@ class UsersController extends AppController
      */
     public function add()
     {
+        //使用するコンポーネントをロード。
+        $this->loadComponent('User',[
+            'className' => '\App\Controller\Component\User\UserComponent'
+        ]);
 
+        //Entity作成。
         $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+        $sexs = $this->User->getSexLists();
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        if ($this->request->is('post')) {
+            //ユーザー保存処理
+            $user = $this->User->addNewUser($this->request);
         }
-        $this->set(compact('user'));
+
+        //値をセット
+        $this->set('user', $user);
+        $this->set('sexs', $sexs);
     }
 
     /**
