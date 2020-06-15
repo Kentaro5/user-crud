@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Users Controller
@@ -19,9 +20,16 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        //使用するコンポーネントをロード。
+        $this->loadComponent('User',[
+            'className' => '\App\Controller\Component\User\UserComponent'
+        ]);
 
-        $this->set(compact('users'));
+        //コンポーネントからユーザーリストを取得。
+        $users = $this->User->getUserLists();
+
+        //ビュー側に値をセット
+        $this->set('users', $users);
     }
 
     /**
