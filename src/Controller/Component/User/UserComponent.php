@@ -213,6 +213,11 @@ class UserComponent extends Component {
         }
     }
 
+    public function deleteUser( $request ) {
+
+
+    }
+
 
 }
 
