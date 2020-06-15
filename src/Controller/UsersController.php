@@ -13,6 +13,11 @@ use Cake\ORM\TableRegistry;
 class UsersController extends AppController
 {
 
+    //ページネーションのテンプレートを使用。
+    public $helpers = [
+        'Paginator' => ['templates' => 'paginator-templates']
+    ];
+
     /**
      * Index method
      *
