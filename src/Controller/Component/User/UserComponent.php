@@ -9,6 +9,7 @@ use App\Model\Validation\Form\UserTellForm;
 use App\Model\Validation\Form\UserEmailForm;
 
 use Cake\Datasource\ModelAwareTrait;
+use Cake\Datasource\ConnectionManager;
 
 class UserComponent extends Component {
 
@@ -65,6 +66,36 @@ class UserComponent extends Component {
         if( $user->errors() )
         {
             return $user;
+        }
+
+        //トランザクション処理のセット。
+        $db_transaction = ConnectionManager::get('default');
+
+        try{
+            $db_transaction->begin();
+            if ($this->Users->saveOrFail($user)) {
+
+                $this->Flash->success(__('ユーザーを新しく作成しました。'));
+
+                //DBの保存処理をDBに反映する。
+                $db_transaction->commit();
+
+                //保存後はトップページに遷移。
+                return $this->_registry->getController()->redirect(['action' => 'index']);
+            }
+
+        } catch(\Cake\ORM\Exception\PersistenceFailedException $e) {
+            //logにエラーの詳細を記載。
+            $this->log($e->getCode(), 'debug');
+            $this->log($e->getMessage(), 'debug');
+            $this->log($e->getFile(), 'debug');
+            $this->log($e->getTraceAsString(), 'debug');
+            $this->log($e->getEntity(), 'debug');
+
+            $this->Flash->error(__('ユーザーの作成に失敗しました。お手数ですが、もう一度処理をやり直してください。'));
+
+            //DBの保存処理を巻き戻して元の状態に戻す。
+            $db_transaction->rollback();
         }
     }
 
