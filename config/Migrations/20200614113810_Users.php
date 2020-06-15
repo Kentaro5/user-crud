@@ -20,8 +20,8 @@ class Users extends AbstractMigration
             'null' => false,
         ]);
 
-        $table->addColumn('sex', 'string', [
-            'default' => '0',
+        $table->addColumn('sex_code', 'integer', [
+            'default' => 0,
             'limit' => 1,
             'null' => false,
         ]);
