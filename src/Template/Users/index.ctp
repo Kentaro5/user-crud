@@ -63,7 +63,7 @@
                                         [
                                             'controller'=>'Users',
                                             'action'=>'edit',
-                                            'user_id' => $user->id,
+                                            $user->id,
                                         ],
                                         [
                                             'class' => 'button is-success mr-5'
@@ -75,7 +75,7 @@
                                         [
                                             'controller'=>'Users',
                                             'action'=>'delete',
-                                            'user_id' => $user->id,
+                                            $user->id,
                                         ],
                                         [
                                             'class' => 'button is-danger'
