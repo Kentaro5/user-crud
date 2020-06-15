@@ -77,9 +77,6 @@ class UserComponent extends Component {
         $user = $this->Users->newEntity($request->getData());
         $user = $this->Users->patchEntity($user, $request->getData());
 
-        //Entityに通すとsexが消えるので、改めて追加。
-        $user->sex = $request->getData()['sex'];
-
         //エラーがあれば、errorsに格納。
         if(!empty($this->user_name_form->errors()['first_name'])) {
             $user->errors('first_name', $this->user_name_form->errors()['first_name']);
@@ -148,9 +145,6 @@ class UserComponent extends Component {
         $user = $this->Users->newEntity($request->getData());
         $user = $this->Users->patchEntity($user, $request->getData());
 
-        //Entityに通すとsexが消えるので、改めて追加。
-        $user->sex = $request->getData()['sex'];
-
         //エラーがあれば、errorsに格納。
         if(!empty($this->user_name_form->errors()['first_name'])) {
             $user->errors('first_name', $this->user_name_form->errors()['first_name']);
@@ -173,6 +167,7 @@ class UserComponent extends Component {
         {
             return $user;
         }
+
 
         //トランザクション処理のセット。
         $db_transaction = ConnectionManager::get('default');
