@@ -38,6 +38,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
         <?= $this->fetch('content') ?>
 
+
+        <?= $this->Html->script('app') ?>
     <footer>
     </footer>
 </body>

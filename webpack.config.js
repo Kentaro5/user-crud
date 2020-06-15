@@ -8,7 +8,8 @@ module.exports = {
 
     entry: {
         main: [
-            './src/scss/main.scss'
+            './src/scss/main.scss',
+            './src/js/app.js'
         ]
     },
     output: {
