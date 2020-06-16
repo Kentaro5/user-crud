@@ -24,12 +24,25 @@ class UserEmailValidation extends Validation
         //空白削除
         $user_email  = preg_replace("/( |　)/", "", $user_email );
 
-        //ユーザーの姓名はそれぞれ30文字以内
+        //メールアドレスは254文字以内
         if( mb_strlen( $user_email, "UTF-8" ) > 254 ){
             return false;
         }
 
         return true;
+    }
+
+    public static function checkUserEmailFormat($user_email)
+    {
+        //空白削除
+        $user_email  = preg_replace("/( |　)/", "", $user_email );
+        //メールアドレスの形式が正しいかどうかチェックする。
+        if(filter_var($user_email, FILTER_VALIDATE_EMAIL)){
+
+            return true;
+        }
+
+        return false;
     }
 
 }
