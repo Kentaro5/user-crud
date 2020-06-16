@@ -32,4 +32,17 @@ class UserEmailValidation extends Validation
         return true;
     }
 
+    public static function checkUserEmailFormat($user_email)
+    {
+        //空白削除
+        $user_email  = preg_replace("/( |　)/", "", $user_email );
+        //メールアドレスの形式が正しいかどうかチェックする。
+        if(filter_var($user_email, FILTER_VALIDATE_EMAIL)){
+
+            return true;
+        }
+
+        return false;
+    }
+
 }

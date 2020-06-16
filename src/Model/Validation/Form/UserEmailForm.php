@@ -21,6 +21,11 @@ class UserEmailForm extends Form
                 'rule' => 'checkUserEmailLength',
                 'message' => 'メールアドレスは254文字以内で入力してください。',
             ])
+            ->add('email', 'checkUserEmailFormat', [
+                'provider' => 'UserEmailValidation',
+                'rule' => 'checkUserEmailFormat',
+                'message' => 'メールアドレスの形式が正しくありません。',
+            ])
             ->allowEmpty('email', false,'メールアドレスは必須入力です。')
             ->email('email', 254, 'メールアドレスの形式が正しくありません。');
 
